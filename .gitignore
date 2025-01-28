@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+/x64/Debug
+/Hopes_Di.cbd8a82d/x64/Debug
+/.vs/Hopes_DirectX12_Library

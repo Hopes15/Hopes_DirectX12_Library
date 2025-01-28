@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Windows">
+      <UniqueIdentifier>{21cd5783-1e68-4f91-8742-a68a12c02255}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DirectX12">
+      <UniqueIdentifier>{93759e72-70a2-4bed-ac19-a9ac3b7d2159}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools">
+      <UniqueIdentifier>{0e54b99b-26f8-4f9c-a4d2-5f66b96aeec3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DirectX12\Buffer">
+      <UniqueIdentifier>{32bb328c-adb2-4c5a-9462-6c1821eb1dda}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="HDL_Window.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="HDL_Renderer.cpp">
+      <Filter>DirectX12</Filter>
+    </ClCompile>
+    <ClCompile Include="HDL_DescriptorHeap.cpp">
+      <Filter>DirectX12</Filter>
+    </ClCompile>
+    <ClCompile Include="HDL_RootSignature.cpp">
+      <Filter>DirectX12</Filter>
+    </ClCompile>
+    <ClCompile Include="HDL_PSO.cpp">
+      <Filter>DirectX12</Filter>
+    </ClCompile>
+    <ClCompile Include="HDL_BackBuffer.cpp">
+      <Filter>DirectX12\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="HDL_VertexBuffer.cpp">
+      <Filter>DirectX12\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="HDL_IndexBuffer.cpp">
+      <Filter>DirectX12\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="HDL_ConstantBuffer.cpp">
+      <Filter>DirectX12\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="HDL_Input.cpp">
+      <Filter>DirectX12</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="HDL_Window.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="HDL_Renderer.h">
+      <Filter>DirectX12</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonDX12Header.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="HDL_DescriptorHeap.h">
+      <Filter>DirectX12</Filter>
+    </ClInclude>
+    <ClInclude Include="HDL_RootSignature.h">
+      <Filter>DirectX12</Filter>
+    </ClInclude>
+    <ClInclude Include="HDL_PSO.h">
+      <Filter>DirectX12</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderCompiler.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="HDL_BackBuffer.h">
+      <Filter>DirectX12\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="HDL_VertexBuffer.h">
+      <Filter>DirectX12\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="HDL_IndexBuffer.h">
+      <Filter>DirectX12\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="HDL_ConstantBuffer.h">
+      <Filter>DirectX12\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="HDL_Input.h">
+      <Filter>DirectX12</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
