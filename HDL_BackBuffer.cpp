@@ -8,10 +8,10 @@ HDL_BackBuffer::HDL_BackBuffer() : pRenderer(HDL_Renderer::GetInstance())
 	pRTVDescHeap = new HDL_DescriptorHeap();
 	pRTVDescHeap->CreateAsRTV(pRenderer->BUFFER_COUNT);
 
-	//sRGB用
-	D3D12_RENDER_TARGET_VIEW_DESC RTVdesc = {};
-	RTVdesc.Format			= DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
-	RTVdesc.ViewDimension	= D3D12_RTV_DIMENSION_TEXTURE2D;
+	////sRGB用
+	//D3D12_RENDER_TARGET_VIEW_DESC RTVdesc = {};
+	//RTVdesc.Format			= DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
+	//RTVdesc.ViewDimension	= D3D12_RTV_DIMENSION_TEXTURE2D;
 
 	//RTVの生成
 	//バックバッファの数分リソースを用意

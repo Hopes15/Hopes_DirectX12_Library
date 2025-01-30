@@ -86,6 +86,9 @@ private:
 	//DrawŠÖ˜A
 	void WaitDrawing();
 
+	//‚»‚Ì‘¼
+	void EnableDebugLayer();
+
 public:
 	const UINT WINDOW_WIDTH;
 	const UINT WINDOW_HEIGHT;

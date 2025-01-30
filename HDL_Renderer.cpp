@@ -2,19 +2,6 @@
 
 HDL_Renderer* HDL_Renderer::pInstance = nullptr;
 
-//デバックレイヤー
-#ifdef _DEBUG
-void EnableDebugLayer() {
-	ComPtr<ID3D12Debug> debugLayer = nullptr;
-	auto result = D3D12GetDebugInterface(IID_PPV_ARGS(debugLayer.ReleaseAndGetAddressOf()));
-
-	if (FAILED(result)) return;
-
-	debugLayer->EnableDebugLayer();
-	debugLayer.Reset();
-}
-#endif
-
 HDL_Renderer::HDL_Renderer(UINT WIDTH, UINT HEIGHT, HWND hwnd) :
 	WINDOW_WIDTH (WIDTH),
 	WINDOW_HEIGHT(HEIGHT),
@@ -317,4 +304,20 @@ void HDL_Renderer::WaitDrawing()
 		//イベントハンドラを閉じる
 		CloseHandle(event);
 	}
+}
+
+//その他
+void HDL_Renderer::EnableDebugLayer() 
+{
+	ComPtr<ID3D12Debug>	debugLayer = nullptr;
+	auto result = D3D12GetDebugInterface(IID_PPV_ARGS(debugLayer.ReleaseAndGetAddressOf()));
+
+	if (FAILED(result))
+	{
+		std::cout << "デバックレイヤーの生成に失敗" << std::endl;
+		return;
+	}
+
+	debugLayer->EnableDebugLayer();
+	debugLayer.Reset();
 }
