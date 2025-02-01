@@ -8,7 +8,7 @@ HDL_PSO::HDL_PSO(D3D12_INPUT_LAYOUT_DESC inputLayout, ID3D12RootSignature* pRoot
 	//PipelineStateÇÃê›íË
 	pipelineDesc.SampleMask					   = D3D12_DEFAULT_SAMPLE_MASK;
 	pipelineDesc.RasterizerState			   = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT);
-	pipelineDesc.RasterizerState.CullMode	   = D3D12_CULL_MODE_BACK;
+	pipelineDesc.RasterizerState.CullMode	   = D3D12_CULL_MODE_NONE;
 	pipelineDesc.IBStripCutValue			   = D3D12_INDEX_BUFFER_STRIP_CUT_VALUE_DISABLED;
 	pipelineDesc.PrimitiveTopologyType		   = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE;
 	pipelineDesc.NumRenderTargets			   = 1;
