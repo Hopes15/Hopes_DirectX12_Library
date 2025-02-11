@@ -5,6 +5,9 @@
 #include <dxgi1_6.h>
 #pragma comment(lib, "dxgi.lib")
 
+/// <summary>
+/// シングルトンクラス（Create()呼び出し必須）
+/// </summary>
 class HDL_Renderer
 {
 	//シングルトン

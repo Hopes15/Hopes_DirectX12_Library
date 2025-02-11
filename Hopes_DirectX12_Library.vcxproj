@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -137,6 +138,7 @@
     <ClInclude Include="HDL_DescriptorHeap.h" />
     <ClInclude Include="HDL_IndexBuffer.h" />
     <ClInclude Include="HDL_Input.h" />
+    <ClInclude Include="HDL_Math.h" />
     <ClInclude Include="HDL_PSO.h" />
     <ClInclude Include="HDL_Renderer.h" />
     <ClInclude Include="HDL_RootSignature.h" />
@@ -152,6 +154,7 @@
     <ClCompile Include="HDL_DescriptorHeap.cpp" />
     <ClCompile Include="HDL_IndexBuffer.cpp" />
     <ClCompile Include="HDL_Input.cpp" />
+    <ClCompile Include="HDL_Math.cpp" />
     <ClCompile Include="HDL_PSO.cpp" />
     <ClCompile Include="HDL_Renderer.cpp" />
     <ClCompile Include="HDL_RootSignature.cpp" />
