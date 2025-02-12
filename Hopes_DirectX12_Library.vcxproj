@@ -142,7 +142,7 @@
     <ClInclude Include="HDL_PSO.h" />
     <ClInclude Include="HDL_Renderer.h" />
     <ClInclude Include="HDL_RootSignature.h" />
-    <ClInclude Include="HDL_TextureBuffer.h" />
+    <ClInclude Include="HDL_Texture.h" />
     <ClInclude Include="HDL_VertexBuffer.h" />
     <ClInclude Include="HDL_Window.h" />
     <ClInclude Include="ShaderCompiler.h" />
@@ -158,7 +158,7 @@
     <ClCompile Include="HDL_PSO.cpp" />
     <ClCompile Include="HDL_Renderer.cpp" />
     <ClCompile Include="HDL_RootSignature.cpp" />
-    <ClCompile Include="HDL_TextureBuffer.cpp" />
+    <ClCompile Include="HDL_Texture.cpp" />
     <ClCompile Include="HDL_VertexBuffer.cpp" />
     <ClCompile Include="HDL_Window.cpp" />
   </ItemGroup>

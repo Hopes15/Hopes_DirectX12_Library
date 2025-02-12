@@ -48,7 +48,7 @@
     <ClCompile Include="HDL_Input.cpp">
       <Filter>DirectX12</Filter>
     </ClCompile>
-    <ClCompile Include="HDL_TextureBuffer.cpp">
+    <ClCompile Include="HDL_Texture.cpp">
       <Filter>DirectX12\Buffer</Filter>
     </ClCompile>
     <ClCompile Include="HDL_Math.cpp">
@@ -92,7 +92,7 @@
     <ClInclude Include="HDL_Input.h">
       <Filter>DirectX12</Filter>
     </ClInclude>
-    <ClInclude Include="HDL_TextureBuffer.h">
+    <ClInclude Include="HDL_Texture.h">
       <Filter>DirectX12\Buffer</Filter>
     </ClInclude>
     <ClInclude Include="Utilities.h">
