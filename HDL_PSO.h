@@ -9,8 +9,6 @@ class HDL_PSO
 	/// </summary>
 	/// <param name="inputLayout">	セットするインプットレイアウト		</param>
 	/// <param name="pRootSig">		セットするRootSignatureのポインタ	</param>
-	/// <param name="pVSBlob">		セットするVSBlobのポインタ			</param>
-	/// <param name="pPSBlob">		セットするPSBlobのポインタ			</param>
 	HDL_PSO(D3D12_INPUT_LAYOUT_DESC inputLayout, ID3D12RootSignature *pRootSig);
 
 	/// <summary>

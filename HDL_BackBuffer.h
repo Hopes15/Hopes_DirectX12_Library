@@ -17,11 +17,18 @@ public:
 	/// </summary>
 	void CloseBackBuffer();
 
+	/// <summary>
+	/// ディスクリプタヒープのヒープハンドルを取得
+	/// </summary>
+	/// <returns></returns>
+	inline D3D12_CPU_DESCRIPTOR_HANDLE* GetHeapHandle() { return &mHeapHandle; }
+
 	~HDL_BackBuffer();
 
 private:
-	D3D12_VIEWPORT mViewPort    = {};
-	D3D12_RECT     mScissorRect = {};
+	D3D12_VIEWPORT				mViewPort    = {};
+	D3D12_RECT					mScissorRect = {};
+	D3D12_CPU_DESCRIPTOR_HANDLE mHeapHandle  = {};
 
 	class HDL_DescriptorHeap* pRTVDescHeap  = nullptr;
 	class HDL_Renderer*		  pRenderer     = nullptr;

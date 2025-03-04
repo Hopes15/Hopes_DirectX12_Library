@@ -16,7 +16,7 @@ HDL_BackBuffer::HDL_BackBuffer() : pRenderer(HDL_Renderer::GetInstance())
 	//RTVの生成
 	//バックバッファの数分リソースを用意
 	mBackBuffers.resize(pRenderer->BUFFER_COUNT);
-	auto handle = pRTVDescHeap->GetPointerOfDescriptorHeap()->GetCPUDescriptorHandleForHeapStart();
+	mHeapHandle = pRTVDescHeap->GetPointerOfDescriptorHeap()->GetCPUDescriptorHandleForHeapStart();
 
 	for (UINT i = 0; i < pRenderer->BUFFER_COUNT; ++i)
 	{
@@ -30,9 +30,9 @@ HDL_BackBuffer::HDL_BackBuffer() : pRenderer(HDL_Renderer::GetInstance())
 #endif
 		}
 		//RTV生成
-		pRenderer->GetDevice()->CreateRenderTargetView(mBackBuffers[i].Get(), nullptr, handle);
+		pRenderer->GetDevice()->CreateRenderTargetView(mBackBuffers[i].Get(), nullptr, mHeapHandle);
 		//ポインターをずらす
-		handle.ptr += pRenderer->GetDevice()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
+		mHeapHandle.ptr += pRenderer->GetDevice()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
 	}
 
 	//ビューポートの設定
@@ -64,14 +64,11 @@ void HDL_BackBuffer::OpenBackBuffer(const float* clearColor)
 	cmdList->ResourceBarrier(1, &transition);
 
 	//レンダーターゲット
-	auto RTVHandler = pRTVDescHeap->GetPointerOfDescriptorHeap()->GetCPUDescriptorHandleForHeapStart();
-	RTVHandler.ptr += backBuffIdx * pRenderer->GetDevice()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
-
-	//レンダーターゲットをセット
-	cmdList->OMSetRenderTargets(1, &RTVHandler, false, nullptr);
+	mHeapHandle = pRTVDescHeap->GetPointerOfDescriptorHeap()->GetCPUDescriptorHandleForHeapStart();
+	mHeapHandle.ptr += backBuffIdx * pRenderer->GetDevice()->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
 
 	//レンダーターゲットをクリア
-	cmdList->ClearRenderTargetView(RTVHandler, clearColor, 0, nullptr);
+	cmdList->ClearRenderTargetView(mHeapHandle, clearColor, 0, nullptr);
 
 	//ビューポート・シザー矩形をセット
 	cmdList->RSSetViewports(1, &mViewPort);

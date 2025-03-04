@@ -53,6 +53,8 @@ public:
 	/// </summary>
 	void EnterDrawing();
 
+	void SetRenderTargets(D3D12_CPU_DESCRIPTOR_HANDLE* pRTDesc, D3D12_CPU_DESCRIPTOR_HANDLE* pDSDesc);
+
 	/// <summary>
 	/// •`‰æI—¹ˆ—
 	/// </summary>

@@ -42,6 +42,11 @@ void HDL_Renderer::EnterDrawing()
 	mCmdList->Reset(mCmdAllocator.Get(), nullptr);
 }
 
+void HDL_Renderer::SetRenderTargets(D3D12_CPU_DESCRIPTOR_HANDLE* pRTDesc, D3D12_CPU_DESCRIPTOR_HANDLE* pDSDesc)
+{
+	mCmdList->OMSetRenderTargets(1, pRTDesc, false, pDSDesc);
+}
+
 void HDL_Renderer::ExitDrawing()
 {
 	//–½—ß‚ÌƒNƒ[ƒY
