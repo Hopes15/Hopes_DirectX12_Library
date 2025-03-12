@@ -135,6 +135,7 @@
     <ClInclude Include="CommonDX12Header.h" />
     <ClInclude Include="HDL_BackBuffer.h" />
     <ClInclude Include="HDL_ConstantBuffer.h" />
+    <ClInclude Include="HDL_DepthStencilBuffer.h" />
     <ClInclude Include="HDL_DescriptorHeap.h" />
     <ClInclude Include="HDL_IndexBuffer.h" />
     <ClInclude Include="HDL_Input.h" />
@@ -151,6 +152,7 @@
   <ItemGroup>
     <ClCompile Include="HDL_BackBuffer.cpp" />
     <ClCompile Include="HDL_ConstantBuffer.cpp" />
+    <ClCompile Include="HDL_DepthStencilBuffer.cpp" />
     <ClCompile Include="HDL_DescriptorHeap.cpp" />
     <ClCompile Include="HDL_IndexBuffer.cpp" />
     <ClCompile Include="HDL_Input.cpp" />

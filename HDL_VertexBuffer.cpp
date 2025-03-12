@@ -16,12 +16,7 @@ HDL_VertexBuffer::HDL_VertexBuffer(UINT64 bufferSize, UINT stride) :
 		/*ppResource	 */ IID_PPV_ARGS(mVertexBuff.ReleaseAndGetAddressOf())
 	);
 
-	if (FAILED(result))
-	{
-#ifdef _DEBUG
-		std::cout << "VertexBufferの生成に失敗" << std::endl;
-#endif
-	}
+	assert(SUCCEEDED(result));
 
 	//バーテックスバッファビューの設定
 	mVBV.BufferLocation = mVertexBuff->GetGPUVirtualAddress();
@@ -34,12 +29,8 @@ void HDL_VertexBuffer::CopyBufferToVRAM(void* pVertices)
 	void* mappedVertices = nullptr;
 	auto  result		 = mVertexBuff->Map(0, nullptr, (void**)&mappedVertices);
 
-	if (FAILED(result))
-	{
-#ifdef _DEBUG
-		std::cout << "VertexBufferのマッピングに失敗" << std::endl;
-#endif
-	}
+	assert(SUCCEEDED(result));
+
 	memcpy(mappedVertices, pVertices, mVBV.SizeInBytes);
 	mVertexBuff->Unmap(0, nullptr);
 }

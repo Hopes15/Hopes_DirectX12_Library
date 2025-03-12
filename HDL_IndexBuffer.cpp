@@ -15,12 +15,7 @@ HDL_IndexBuffer::HDL_IndexBuffer(UINT64 bufferSize) : pDevice(HDL_Renderer::GetI
 		/*ppResource	 */ IID_PPV_ARGS(mIndexBuffer.ReleaseAndGetAddressOf())
 	);
 
-	if (FAILED(result))
-	{
-#ifdef _DEBUG
-		std::cout << "IndexBufferの生成に失敗" << std::endl;
-#endif
-	}
+	assert(SUCCEEDED(result));
 
 	//インデックスバッファービューの設定
 	mIBV.BufferLocation = mIndexBuffer->GetGPUVirtualAddress();
@@ -33,12 +28,8 @@ void HDL_IndexBuffer::CopyBufferToVRAM(void* pIndices)
 	void* mappedIndices = nullptr;
 	auto  result		= mIndexBuffer->Map(0, nullptr, (void**)&mappedIndices);
 
-	if (FAILED(result))
-	{
-#ifdef _DEBUG
-		std::cout << "IndexBufferのマッピングに失敗" << std::endl;
-#endif
-	}
+	assert(SUCCEEDED(result));
+
 	memcpy(mappedIndices, pIndices, mIBV.SizeInBytes);
 	mIndexBuffer->Unmap(0, nullptr);
 }

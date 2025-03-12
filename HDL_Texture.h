@@ -1,5 +1,6 @@
 #pragma once
 #include "CommonDX12Header.h"
+#include <string>
 
 //DirectXTex
 #include "/Add-Ons/DirectXTex-main/DirectXTex/DirectXTex.h"
@@ -17,16 +18,24 @@ public:
 	/// <summary>
 	/// TexMetaDataを返す
 	/// </summary>
-	inline TexMetadata&  GetMetaData()   { return mMetaData; }
+	TexMetadata&  GetMetaData()   { return mMetaData; }
 
 	/// <summary>
 	/// ScratchImageを返す
 	/// </summary>
-	inline ScratchImage& GetScratchImg() { return mScratchImg; }
+	ScratchImage& GetScratchImg() { return mScratchImg; }
+
+	/// <summary>
+	/// Imageを返す
+	/// </summary>
+	/// <returns></returns>
+	const Image GetImage() const { return *pImg; }
 	
 private:
 	TexMetadata  mMetaData	 = {};
 	ScratchImage mScratchImg = {};
+
+	const Image* pImg = nullptr;
 };
 
 class HDL_TextureBuffer
@@ -38,13 +47,13 @@ public:
 	/// <param name="metaData">		テクスチャのメタデータ		</param>
 	/// <param name="pImg">			イメージデータのポインタ	</param>
 	/// <param name="handle">		SRV用のハンドル				</param>
-	HDL_TextureBuffer(TexMetadata metaData, const Image* pImg, D3D12_CPU_DESCRIPTOR_HANDLE handle);
+	HDL_TextureBuffer(TexMetadata metaData, const Image& pImg, D3D12_CPU_DESCRIPTOR_HANDLE handle);
 
 	/// <summary>
 	/// 画像データをVRAMへコピーする
 	/// </summary>
 	/// <param name="pImg">	Image型のポインタ(転送データ)		</param>
-	void CopyBufferToVRAM(const Image* pImg);
+	void CopyBufferToVRAM(const Image& pImg);
 
 	/// <summary>
 	/// テクスチャバッファを転送し、コピー先からシェーダーリソースに切り替え

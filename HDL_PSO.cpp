@@ -45,12 +45,7 @@ void HDL_PSO::CreatePipeline()
 		/*ppPipelineState					*/ IID_PPV_ARGS(mPipeline.ReleaseAndGetAddressOf())
 	);
 
-	if (FAILED(result))
-	{
-#ifdef _DEBUG
-		std::cout << "Pipeline‚Ì¶¬‚ÉŽ¸”s" << std::endl;
-#endif
-	}
+	assert(SUCCEEDED(result));
 }
 
 HDL_PSO::~HDL_PSO()

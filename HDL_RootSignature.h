@@ -19,7 +19,7 @@ public:
 	/// ID3D12RootSignatureのポインターを返す
 	/// </summary>
 	/// <returns>	ComPtr.Get()	</returns>
-	ID3D12RootSignature* GetPointerOfRootSignature() { return mRootSig.Get(); }
+	ID3D12RootSignature* GetPointerOfRootSignature() const { return mRootSig.Get(); }
 
 	~HDL_RootSignature();
 

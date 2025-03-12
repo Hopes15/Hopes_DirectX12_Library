@@ -3,7 +3,7 @@
 
 class HDL_ConstantBuffer
 {
-	public:
+public:
 	/// <summary>
 	/// HDL_ConstantBufferƒNƒ‰ƒX‚ğ‰Šú‰»
 	/// </summary>

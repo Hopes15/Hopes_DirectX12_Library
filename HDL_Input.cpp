@@ -14,13 +14,7 @@ HDL_Input::HDL_Input(HWND hwnd)
 		/*punkOuter*/ NULL
 	);
 
-	if (FAILED(result))
-	{
-#ifdef _DEBUG
-		std::cout << "DirectInput‚Ì¶¬‚ÉŽ¸”s‚µ‚Ü‚µ‚½" << std::endl;
-#endif
-		return;
-	}
+	assert(SUCCEEDED(result));
 
 	//Divice(Key)‚ðì¬
 	result = pInput->CreateDevice(
@@ -29,24 +23,12 @@ HDL_Input::HDL_Input(HWND hwnd)
 		/*LPUNKNOWN			  */ NULL
 	);
 
-	if (FAILED(result))
-	{
-#ifdef _DEBUG
-		std::cout << "Device‚Ì¶¬‚ÉŽ¸”s‚µ‚Ü‚µ‚½" << std::endl;
-#endif
-		return;
-	}
+	assert(SUCCEEDED(result));
 
 	//Device‚ðFormat
 	result = pDevice->SetDataFormat(&c_dfDIKeyboard);
 
-	if (FAILED(result))
-	{
-#ifdef _DEBUG
-		std::cout << "Device‚ÌFormat‚ÉŽ¸”s‚µ‚Ü‚µ‚½" << std::endl;
-#endif
-		return;
-	}
+	assert(SUCCEEDED(result));
 
 	//Device‚ÌÝ’è
 	result = pDevice->SetCooperativeLevel(
@@ -54,13 +36,7 @@ HDL_Input::HDL_Input(HWND hwnd)
 		DISCL_NONEXCLUSIVE | DISCL_BACKGROUND
 	);
 
-	if (FAILED(result))
-	{
-#ifdef _DEBUG
-		std::cout << "Device‚ÌÝ’è‚ÉŽ¸”s‚µ‚Ü‚µ‚½" << std::endl;
-#endif
-		return;
-	}
+	assert(SUCCEEDED(result));
 
 	//“ü—ÍŽó•t
 	pDevice->Acquire();

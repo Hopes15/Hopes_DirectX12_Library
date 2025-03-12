@@ -21,7 +21,7 @@ public:
 	/// ディスクリプタヒープのヒープハンドルを取得
 	/// </summary>
 	/// <returns></returns>
-	inline D3D12_CPU_DESCRIPTOR_HANDLE* GetHeapHandle() { return &mHeapHandle; }
+	D3D12_CPU_DESCRIPTOR_HANDLE* GetHeapHandle() { return &mHeapHandle; }
 
 	~HDL_BackBuffer();
 

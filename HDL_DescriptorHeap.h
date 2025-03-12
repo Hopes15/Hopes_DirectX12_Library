@@ -33,7 +33,7 @@ public:
 	/// DescriptorHeapのポインターを返す
 	/// </summary>
 	/// <returns>	ComPtr.Get()	</returns>
-	ID3D12DescriptorHeap* GetPointerOfDescriptorHeap() { return mDescHeap.Get(); }
+	ID3D12DescriptorHeap* GetPointerOfDescriptorHeap() const { return mDescHeap.Get(); }
 
 	/// <summary>
 	/// DescriptorHeapのアドレスを返す

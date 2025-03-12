@@ -39,12 +39,7 @@ HDL_DepthStencilBuffer::HDL_DepthStencilBuffer() :
 		IID_PPV_ARGS(mDSBuff.ReleaseAndGetAddressOf())
 	);
 
-	if (FAILED(result)) {
-#ifdef _DEBUG
-		std::cout << "Depth Stencil Buffer‚Ì¶¬‚ÉŽ¸”s" << std::endl;
-#endif
-		return;
-	}
+	assert(SUCCEEDED(result));
 
 	//DSV‚Ìì¬
 	D3D12_DEPTH_STENCIL_VIEW_DESC DSVDesc = {};

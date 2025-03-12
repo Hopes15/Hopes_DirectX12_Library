@@ -16,11 +16,7 @@ HDL_ConstantBuffer::HDL_ConstantBuffer(UINT64 bufferSize, D3D12_CPU_DESCRIPTOR_H
 		/*ppResource	 */ IID_PPV_ARGS(mConstantBuff.ReleaseAndGetAddressOf())
 	);
 
-	if (FAILED(result)) {
-#ifdef _DEBUG
-		std::cout << "ConstantBufferの生成に失敗" << std::endl;
-#endif
-	}
+	assert(SUCCEEDED(result));
 
 	//コンスタントバッファービューの設定
 	mCBV.BufferLocation = mConstantBuff->GetGPUVirtualAddress();
@@ -34,11 +30,8 @@ void HDL_ConstantBuffer::CopyBufferToVRAM(void* pSomeThing)
 {
 	auto result = mConstantBuff->Map(0, nullptr, (void**)&pMappedSomeThing);
 
-	if (FAILED(result)) {
-#ifdef _DEBUG
-		std::cout << "ConstantBufferのマッピングに失敗" << std::endl;
-#endif
-	}
+	assert(SUCCEEDED(result));
+	
 	memcpy(pMappedSomeThing, pSomeThing, mCBV.SizeInBytes);
 }
 

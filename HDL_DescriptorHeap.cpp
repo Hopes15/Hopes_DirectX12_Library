@@ -17,12 +17,7 @@ void HDL_DescriptorHeap::CreateAsCBV_SRV_UAV(UINT numDescriptors)
 		/*ppDescriptorHeap   */ IID_PPV_ARGS(mDescHeap.ReleaseAndGetAddressOf())
 	);
 
-	if (FAILED(result))
-	{
-#ifdef _DEBUG
-		std::cout << "ディスクリプタヒープ(CBV_SRV_UAV)の生成に失敗" << std::endl;
-#endif
-	}
+	assert(SUCCEEDED(result));
 }
 
 void HDL_DescriptorHeap::CreateAsRTV(UINT numDescriptors)
@@ -39,12 +34,7 @@ void HDL_DescriptorHeap::CreateAsRTV(UINT numDescriptors)
 		/*ppDescriptorHeap   */ IID_PPV_ARGS(mDescHeap.ReleaseAndGetAddressOf())
 	);
 
-	if (FAILED(result))
-	{
-#ifdef _DEBUG
-		std::cout << "ディスクリプタヒープ(RTV)の生成に失敗" << std::endl;
-#endif
-	}
+	assert(SUCCEEDED(result));
 }
 
 void HDL_DescriptorHeap::CreateAsDSV(UINT numDescriptors)
@@ -61,12 +51,7 @@ void HDL_DescriptorHeap::CreateAsDSV(UINT numDescriptors)
 		/*ppDescriptorHeap   */ IID_PPV_ARGS(mDescHeap.ReleaseAndGetAddressOf())
 	);
 
-	if (FAILED(result))
-	{
-#ifdef _DEBUG
-		std::cout << "ディスクリプタヒープ(DSV)の生成に失敗" << std::endl;
-#endif
-	}
+	assert(SUCCEEDED(result));
 }
 
 HDL_DescriptorHeap::~HDL_DescriptorHeap()

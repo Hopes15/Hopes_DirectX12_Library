@@ -22,13 +22,8 @@ HDL_BackBuffer::HDL_BackBuffer() : pRenderer(HDL_Renderer::GetInstance())
 	{
 		//バッファー取得
 		auto result = pRenderer->GetSwapChain4()->GetBuffer(i, IID_PPV_ARGS(mBackBuffers[i].ReleaseAndGetAddressOf()));
-
-		if (FAILED(result))
-		{
-#ifdef _DEBUG
-			std::cout << "BackBuffer(ID3D12Resource)の生成に失敗" << std::endl;
-#endif
-		}
+		assert(SUCCEEDED(result));
+		
 		//RTV生成
 		pRenderer->GetDevice()->CreateRenderTargetView(mBackBuffers[i].Get(), nullptr, mHeapHandle);
 		//ポインターをずらす

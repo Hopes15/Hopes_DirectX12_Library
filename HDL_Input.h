@@ -1,7 +1,5 @@
 #pragma once
-#ifdef _DEBUG
-#include <iostream>
-#endif
+#include <cassert>
 
 //DirectInput
 #define DIRECTINPUT_VERSION 0x0800

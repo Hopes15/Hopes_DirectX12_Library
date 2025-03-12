@@ -72,13 +72,8 @@ bool HDL_Renderer::CreateFactory()
 #else
 	auto result = CreateDXGIFactory1(IID_PPV_ARGS(mFactory.ReleaseAndGetAddressOf()));
 #endif
-	if (FAILED(result))
-	{
-#ifdef _DEBUG
-		std::cout << "DXGIFactoryの生成に失敗" << std::endl;
-#endif
-		return false;
-	}
+
+	assert(SUCCEEDED(result));
 
 	//アダプターの列挙
 	std::vector<ComPtr<IDXGIAdapter>> adapters;
@@ -137,13 +132,7 @@ bool HDL_Renderer::CreateDevice()
 
 	//デバイス作成
 	auto result = D3D12CreateDevice(mAdapter.Get(), featureLevel, IID_PPV_ARGS(mDevice.ReleaseAndGetAddressOf()));
-	if (FAILED(result))
-	{
-#ifdef _DEBUG
-		std::cout << "Deviceの生成に失敗" << std::endl;
-#endif
-		return false;
-	}
+	assert(SUCCEEDED(result));
 
 	return true;
 }
@@ -156,13 +145,7 @@ bool HDL_Renderer::CreateCmdAllocator()
 		/*ppCommandAllocator*/ IID_PPV_ARGS(mCmdAllocator.ReleaseAndGetAddressOf())
 	);
 
-	if (FAILED(result))
-	{
-#ifdef _DEBUG
-		std::cout << "CommandAllocatorの生成に失敗" << std::endl;
-#endif
-		return false;
-	}
+	assert(SUCCEEDED(result));
 
 	return true;
 }
@@ -178,13 +161,7 @@ bool HDL_Renderer::CreateCmdList()
 		/*ppCommandList    */ IID_PPV_ARGS(mCmdList.ReleaseAndGetAddressOf())
 	);
 
-	if (FAILED(result))
-	{
-#ifdef _DEBUG
-		std::cout << "CommandListの生成に失敗" << std::endl;
-#endif
-		return false;
-	}
+	assert(SUCCEEDED(result));
 
 	//命令をクローズして受け付ける準備
 	mCmdList->Close();
@@ -207,13 +184,7 @@ bool HDL_Renderer::CreateCmdQueue()
 		/*ppCommandQueue    */ IID_PPV_ARGS(mCmdQueue.ReleaseAndGetAddressOf())
 	);
 
-	if (FAILED(result))
-	{
-#ifdef _DEBUG
-		std::cout << "CommandQueueの生成に失敗" << std::endl;
-#endif
-		return false;
-	}
+	assert(SUCCEEDED(result));
 
 	return true;
 }
@@ -246,24 +217,12 @@ bool HDL_Renderer::CreateSwapChain()
 		/*ppSwapChain	   */ swapChain1.ReleaseAndGetAddressOf()
 	);
 
-	if (FAILED(result))
-	{
-#ifdef _DEBUG
-		std::cout << "SwapChainの生成に失敗" << std::endl;
-#endif
-		return false;
-	}
+	assert(SUCCEEDED(result));
 
 	//SwapChain4への互換性があるかを確認
 	result = swapChain1->QueryInterface(IID_PPV_ARGS(mSwapChain4.ReleaseAndGetAddressOf()));
 
-	if (FAILED(result))
-	{
-#ifdef _DEBUG
-		std::cout << "SwapChainのグレードアップに失敗" << std::endl;
-#endif
-		return false;
-	}
+	assert(SUCCEEDED(result));
 
 	//解放
 	swapChain1.Reset();
@@ -281,13 +240,7 @@ bool HDL_Renderer::CreateFence()
 		/*ppFence          */ IID_PPV_ARGS(mFence.ReleaseAndGetAddressOf())
 	);
 
-	if (FAILED(result))
-	{
-#ifdef _DEBUG
-		std::cout << "Fenceの生成に失敗" << std::endl;
-#endif
-		return false;
-	}
+	assert(SUCCEEDED(result));
 
 	return true;
 }

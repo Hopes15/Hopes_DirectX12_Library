@@ -54,6 +54,9 @@
     <ClCompile Include="HDL_Math.cpp">
       <Filter>Tools\Math</Filter>
     </ClCompile>
+    <ClCompile Include="HDL_DepthStencilBuffer.cpp">
+      <Filter>DirectX12\Buffer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HDL_Window.h">
@@ -100,6 +103,9 @@
     </ClInclude>
     <ClInclude Include="HDL_Math.h">
       <Filter>Tools\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="HDL_DepthStencilBuffer.h">
+      <Filter>DirectX12\Buffer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -2,13 +2,13 @@
 #include "HDL_Renderer.h"
 #include "Utilities.h"
 
-HDL_TextureBuffer::HDL_TextureBuffer(TexMetadata metaData, const Image* pImg, D3D12_CPU_DESCRIPTOR_HANDLE handle) :
+HDL_TextureBuffer::HDL_TextureBuffer(TexMetadata metaData, const Image& pImg, D3D12_CPU_DESCRIPTOR_HANDLE handle) :
 	pRenderer(HDL_Renderer::GetInstance())
 {
 	auto dev = pRenderer->GetDevice();
 
 	//バッファサイズをアライン
-	auto bufferSize = AlignBufferSize(pImg->rowPitch, D3D12_TEXTURE_DATA_PITCH_ALIGNMENT) * pImg->height;
+	auto bufferSize = AlignBufferSize(pImg.rowPitch, D3D12_TEXTURE_DATA_PITCH_ALIGNMENT) * pImg.height;
 
 	//コピー元リソースの生成
 	auto heapProp = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD);
@@ -22,12 +22,7 @@ HDL_TextureBuffer::HDL_TextureBuffer(TexMetadata metaData, const Image* pImg, D3
 		/*ppResource	 */ IID_PPV_ARGS(mSrcBuff.ReleaseAndGetAddressOf())
 	);
 
-	if (FAILED(result)) 
-	{
-#ifdef _DEBUG
-		std::cout << "コピー元リソースの生成に失敗" << std::endl;
-#endif
-	}
+	assert(SUCCEEDED(result));
 
 	//コピー先リソースの作成
 	heapProp = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT);
@@ -53,12 +48,7 @@ HDL_TextureBuffer::HDL_TextureBuffer(TexMetadata metaData, const Image* pImg, D3
 		/*ppResource	 */ IID_PPV_ARGS(mDstBuff.ReleaseAndGetAddressOf())
 	);
 
-	if (FAILED(result)) 
-	{
-#ifdef _DEBUG
-		std::cout << "コピー先リソースの生成に失敗" << std::endl;
-#endif
-	}
+	assert(SUCCEEDED(result));
 
 	//SRVの作成
 	mSRV.Format					 = metaData.format;
@@ -79,8 +69,8 @@ HDL_TextureBuffer::HDL_TextureBuffer(TexMetadata metaData, const Image* pImg, D3
 	mSrc.PlacedFootprint.Footprint.Width	= static_cast<UINT>(metaData.width);
 	mSrc.PlacedFootprint.Footprint.Height	= static_cast<UINT>(metaData.height);
 	mSrc.PlacedFootprint.Footprint.Depth	= static_cast<UINT>(metaData.depth);
-	mSrc.PlacedFootprint.Footprint.RowPitch = static_cast<UINT>(AlignBufferSize(pImg->rowPitch, D3D12_TEXTURE_DATA_PITCH_ALIGNMENT));
-	mSrc.PlacedFootprint.Footprint.Format	= pImg->format;
+	mSrc.PlacedFootprint.Footprint.RowPitch = static_cast<UINT>(AlignBufferSize(pImg.rowPitch, D3D12_TEXTURE_DATA_PITCH_ALIGNMENT));
+	mSrc.PlacedFootprint.Footprint.Format	= pImg.format;
 
 	//コピー先の設定
 	mDst.pResource		  = mDstBuff.Get();
@@ -88,28 +78,23 @@ HDL_TextureBuffer::HDL_TextureBuffer(TexMetadata metaData, const Image* pImg, D3
 	mDst.SubresourceIndex = 0;
 }
 
-void HDL_TextureBuffer::CopyBufferToVRAM(const Image* pImg)
+void HDL_TextureBuffer::CopyBufferToVRAM(const Image& pImg)
 {
 	uint8_t* pMappedTex = nullptr;
 	auto result			= mSrcBuff->Map(0, nullptr, (void**)&pMappedTex);
 
-	if (FAILED(result))
-	{
-#ifdef _DEBUG
-		std::cout << "UploadBufferのマッピングに失敗" << std::endl;
-#endif
-	}
+	assert(SUCCEEDED(result));
 
 	//コピー
-	auto srcAddress = pImg->pixels;
-	auto rowPitch	= AlignBufferSize(pImg->rowPitch, D3D12_TEXTURE_DATA_PITCH_ALIGNMENT);
+	auto srcAddress = pImg.pixels;
+	auto rowPitch	= AlignBufferSize(pImg.rowPitch, D3D12_TEXTURE_DATA_PITCH_ALIGNMENT);
 
 	//つじつま合わせ
-	for (size_t h = 0; h < pImg->height; ++h)
+	for (size_t h = 0; h < pImg.height; ++h)
 	{
 		std::copy_n(srcAddress, rowPitch, pMappedTex);
 
-		srcAddress += pImg->rowPitch;
+		srcAddress += pImg.rowPitch;
 		pMappedTex += rowPitch;
 	}
 
@@ -153,16 +138,20 @@ HDL_TextureBuffer::~HDL_TextureBuffer()
 
 HDL_Texture::HDL_Texture(const wchar_t* filePath)
 {
-	auto result = LoadFromWICFile(
-		filePath,
-		WIC_FLAGS_NONE,
-		&mMetaData,
-		mScratchImg,
-		nullptr
-	);
+	auto ext = GetFileExtension(filePath);
 
-	if (FAILED(result))
+	auto result = S_FALSE;
+
+	if (ext == L"png")
 	{
-		std::cout << "テクスチャデータのロードに失敗" << std::endl;
+		result = LoadFromWICFile(filePath, WIC_FLAGS_NONE, &mMetaData, mScratchImg);
 	}
+	else if (ext == L"tga")
+	{
+		result = LoadFromTGAFile(filePath, &mMetaData, mScratchImg);
+	}
+
+	assert(SUCCEEDED(result));
+
+	pImg = mScratchImg.GetImage(0, 0, 0);
 }

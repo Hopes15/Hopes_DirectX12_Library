@@ -36,7 +36,7 @@ class HDL_PSO
 	/// ID3D12PipelineState‚Ìƒ|ƒCƒ“ƒ^‚ð•Ô‚·
 	/// </summary>
 	/// <returns>	ComPtr.Get()	</returns>
-	ID3D12PipelineState* GetPointerOfPipeline() { return mPipeline.Get(); }
+	ID3D12PipelineState* GetPointerOfPipeline() const { return mPipeline.Get(); }
 
 	~HDL_PSO();
 

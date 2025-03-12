@@ -64,19 +64,19 @@ public:
 	/// デバイスクラスのポインターを返す
 	/// </summary>
 	/// <returns>	ID3D12Device*	</returns>
-	ID3D12Device* GetDevice() { return mDevice.Get(); }
+	ID3D12Device* GetDevice() const { return mDevice.Get(); }
 
 	/// <summary>
 	/// コマンドリストのポインターを返す
 	/// </summary>
 	/// <returns>	ID3D12GraphicsCommandList*	</returns>
-	ID3D12GraphicsCommandList* GetCmdList() { return mCmdList.Get(); }
+	ID3D12GraphicsCommandList* GetCmdList() const { return mCmdList.Get(); }
 
 	/// <summary>
 	/// スワップチェーン４のポインターを返す
 	/// </summary>
 	/// <returns>	IDXGISwapChain4*	</returns>
-	IDXGISwapChain4* GetSwapChain4() { return mSwapChain4.Get(); }
+	IDXGISwapChain4* GetSwapChain4() const { return mSwapChain4.Get(); }
 
 private:
 	//Create関数
