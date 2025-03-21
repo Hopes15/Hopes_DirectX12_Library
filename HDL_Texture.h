@@ -18,12 +18,7 @@ public:
 	/// <summary>
 	/// TexMetaData‚ð•Ô‚·
 	/// </summary>
-	TexMetadata&  GetMetaData()   { return mMetaData; }
-
-	/// <summary>
-	/// ScratchImage‚ð•Ô‚·
-	/// </summary>
-	ScratchImage& GetScratchImg() { return mScratchImg; }
+	TexMetadata&  GetMetaData() { return mMetaData; }
 
 	/// <summary>
 	/// Image‚ð•Ô‚·

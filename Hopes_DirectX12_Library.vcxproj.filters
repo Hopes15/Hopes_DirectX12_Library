@@ -13,9 +13,6 @@
     <Filter Include="DirectX12\Buffer">
       <UniqueIdentifier>{32bb328c-adb2-4c5a-9462-6c1821eb1dda}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Tools\Math">
-      <UniqueIdentifier>{08275ff6-c723-4556-8d35-91b99077fd7d}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HDL_Window.cpp">
@@ -50,9 +47,6 @@
     </ClCompile>
     <ClCompile Include="HDL_Texture.cpp">
       <Filter>DirectX12\Buffer</Filter>
-    </ClCompile>
-    <ClCompile Include="HDL_Math.cpp">
-      <Filter>Tools\Math</Filter>
     </ClCompile>
     <ClCompile Include="HDL_DepthStencilBuffer.cpp">
       <Filter>DirectX12\Buffer</Filter>
@@ -100,9 +94,6 @@
     </ClInclude>
     <ClInclude Include="Utilities.h">
       <Filter>Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="HDL_Math.h">
-      <Filter>Tools\Math</Filter>
     </ClInclude>
     <ClInclude Include="HDL_DepthStencilBuffer.h">
       <Filter>DirectX12\Buffer</Filter>

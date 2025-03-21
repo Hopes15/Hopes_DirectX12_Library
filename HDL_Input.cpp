@@ -1,5 +1,7 @@
 #include "HDL_Input.h"
 
+HDL_Input* HDL_Input::pInstance = nullptr;
+
 HDL_Input::HDL_Input(HWND hwnd)
 {
 	//‰Šú‰»

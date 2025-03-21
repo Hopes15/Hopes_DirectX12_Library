@@ -142,7 +142,7 @@ HDL_Texture::HDL_Texture(const wchar_t* filePath)
 
 	auto result = S_FALSE;
 
-	if (ext == L"png")
+	if (ext == L"png" || ext == L"jpg")
 	{
 		result = LoadFromWICFile(filePath, WIC_FLAGS_NONE, &mMetaData, mScratchImg);
 	}
