@@ -80,10 +80,17 @@ void HDL_Window::GenerateWindow(LPCWSTR appName)
 
 bool HDL_Window::ObserveMSG()
 {
-	if (PeekMessage(&mMsg, nullptr, 0, 0, PM_REMOVE))
+	while (mMsg.message != WM_QUIT)
 	{
-		TranslateMessage(&mMsg);
-		DispatchMessage (&mMsg);
+		if (PeekMessage(&mMsg, nullptr, 0, 0, PM_REMOVE))
+		{
+			TranslateMessage(&mMsg);
+			DispatchMessage(&mMsg);
+		}
+		else
+		{
+			break;
+		}
 	}
 
 	return mMsg.message != WM_QUIT;

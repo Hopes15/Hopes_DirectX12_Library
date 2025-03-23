@@ -25,6 +25,8 @@ HDL_Renderer::HDL_Renderer(UINT WIDTH, UINT HEIGHT, HWND hwnd) :
 
 HDL_Renderer::~HDL_Renderer()
 {
+	WaitDrawing();
+
 	//‰ð•ú
 	mFence.Reset();
 	mSwapChain4.Reset();

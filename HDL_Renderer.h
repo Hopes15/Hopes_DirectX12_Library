@@ -60,6 +60,9 @@ public:
 	/// </summary>
 	void ExitDrawing();
 
+	//Draw関連
+	void WaitDrawing();
+
 	/// <summary>
 	/// デバイスクラスのポインターを返す
 	/// </summary>
@@ -87,9 +90,6 @@ private:
 	bool CreateCmdQueue();
 	bool CreateSwapChain();
 	bool CreateFence();
-
-	//Draw関連
-	void WaitDrawing();
 
 	//その他
 	void EnableDebugLayer();
