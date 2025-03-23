@@ -28,7 +28,7 @@ HDL_Window::HDL_Window(const LONG WINDOW_WIDTH, const LONG WINDOW_HEIGHT, LPCWST
 	GenerateWindow(appName);
 }
 
-HDL_Window::HDL_Window(unsigned int icon_ID, const LONG WINDOW_WIDTH, const LONG WINDOW_HEIGHT, LPCWSTR appName, LPCWSTR className)
+HDL_Window::HDL_Window(const LONG WINDOW_WIDTH, const LONG WINDOW_HEIGHT, LPCWSTR appName, LPCWSTR className, UINT icon_ID)
 {
 	//ウィンドウクラスの定義		
 	mWndClass.cbSize		= sizeof(WNDCLASSEX);

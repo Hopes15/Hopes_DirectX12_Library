@@ -272,11 +272,7 @@ void HDL_Renderer::EnableDebugLayer()
 	ComPtr<ID3D12Debug>	debugLayer = nullptr;
 	auto result = D3D12GetDebugInterface(IID_PPV_ARGS(debugLayer.ReleaseAndGetAddressOf()));
 
-	if (FAILED(result))
-	{
-		std::cout << "デバックレイヤーの生成に失敗" << std::endl;
-		return;
-	}
+	assert(SUCCEEDED(result));
 
 	debugLayer->EnableDebugLayer();
 	debugLayer.Reset();

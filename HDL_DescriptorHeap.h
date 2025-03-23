@@ -30,19 +30,33 @@ public:
 	~HDL_DescriptorHeap();
 
 	/// <summary>
-	/// DescriptorHeapのポインターを返す
+	/// DescriptorHeapの中身を返す
 	/// </summary>
 	/// <returns>	ComPtr.Get()	</returns>
 	ID3D12DescriptorHeap* GetPointerOfDescriptorHeap() const { return mDescHeap.Get(); }
 
 	/// <summary>
-	/// DescriptorHeapのアドレスを返す
+	/// DescriptorHeapのポインタのアドレスを返す
 	/// </summary>
 	/// <returns>	ComPtr.GetAddressOf()	</returns>
 	ID3D12DescriptorHeap** GetAddressOfDescriptorHeap() { return mDescHeap.GetAddressOf(); }
 
+	/// <summary>
+	/// CPU上のHeapHandle開始情報を取得
+	/// </summary>
+	D3D12_CPU_DESCRIPTOR_HANDLE GetHeapStart_In_CPU() { return mHeapHandle_CPU; }
+
+	/// <summary>
+	/// GPU上のHeapHandle開始情報を取得
+	/// </summary>
+	D3D12_GPU_DESCRIPTOR_HANDLE GetHeapStart_In_GPU() { return mHeapHandle_GPU; }
+
 private:
 	ID3D12Device*				 pDevice   = nullptr;
 	ComPtr<ID3D12DescriptorHeap> mDescHeap = nullptr;
+	D3D12_CPU_DESCRIPTOR_HANDLE  mHeapHandle_CPU = {};
+	D3D12_GPU_DESCRIPTOR_HANDLE  mHeapHandle_GPU = {};
+
+	void GetHandle();
 };
 

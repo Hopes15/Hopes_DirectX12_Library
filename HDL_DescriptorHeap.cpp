@@ -18,6 +18,8 @@ void HDL_DescriptorHeap::CreateAsCBV_SRV_UAV(UINT numDescriptors)
 	);
 
 	assert(SUCCEEDED(result));
+
+	GetHandle();
 }
 
 void HDL_DescriptorHeap::CreateAsRTV(UINT numDescriptors)
@@ -35,6 +37,8 @@ void HDL_DescriptorHeap::CreateAsRTV(UINT numDescriptors)
 	);
 
 	assert(SUCCEEDED(result));
+	
+	GetHandle();
 }
 
 void HDL_DescriptorHeap::CreateAsDSV(UINT numDescriptors)
@@ -52,9 +56,19 @@ void HDL_DescriptorHeap::CreateAsDSV(UINT numDescriptors)
 	);
 
 	assert(SUCCEEDED(result));
+	
+	GetHandle();
 }
 
 HDL_DescriptorHeap::~HDL_DescriptorHeap()
 {
 	mDescHeap.Reset();
+}
+
+void HDL_DescriptorHeap::GetHandle()
+{
+	auto descHeap = mDescHeap.Get();
+
+	mHeapHandle_CPU = descHeap->GetCPUDescriptorHandleForHeapStart();
+	mHeapHandle_GPU = descHeap->GetGPUDescriptorHandleForHeapStart();
 }
