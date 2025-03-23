@@ -13,6 +13,9 @@
     <Filter Include="DirectX12\Buffer">
       <UniqueIdentifier>{32bb328c-adb2-4c5a-9462-6c1821eb1dda}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Tools\HeaderOnly">
+      <UniqueIdentifier>{cb7f56b7-0e8d-484e-a15c-57800bcc623b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HDL_Window.cpp">
@@ -51,6 +54,9 @@
     <ClCompile Include="HDL_DepthStencilBuffer.cpp">
       <Filter>DirectX12\Buffer</Filter>
     </ClCompile>
+    <ClCompile Include="HDL_FBXConverter.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HDL_Window.h">
@@ -58,9 +64,6 @@
     </ClInclude>
     <ClInclude Include="HDL_Renderer.h">
       <Filter>DirectX12</Filter>
-    </ClInclude>
-    <ClInclude Include="CommonDX12Header.h">
-      <Filter>Tools</Filter>
     </ClInclude>
     <ClInclude Include="HDL_DescriptorHeap.h">
       <Filter>DirectX12</Filter>
@@ -70,9 +73,6 @@
     </ClInclude>
     <ClInclude Include="HDL_PSO.h">
       <Filter>DirectX12</Filter>
-    </ClInclude>
-    <ClInclude Include="ShaderCompiler.h">
-      <Filter>Tools</Filter>
     </ClInclude>
     <ClInclude Include="HDL_BackBuffer.h">
       <Filter>DirectX12\Buffer</Filter>
@@ -92,11 +92,20 @@
     <ClInclude Include="HDL_Texture.h">
       <Filter>DirectX12\Buffer</Filter>
     </ClInclude>
-    <ClInclude Include="Utilities.h">
-      <Filter>Tools</Filter>
-    </ClInclude>
     <ClInclude Include="HDL_DepthStencilBuffer.h">
       <Filter>DirectX12\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities.h">
+      <Filter>Tools\HeaderOnly</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonDX12Header.h">
+      <Filter>Tools\HeaderOnly</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderCompiler.h">
+      <Filter>Tools\HeaderOnly</Filter>
+    </ClInclude>
+    <ClInclude Include="HDL_FBXConverter.h">
+      <Filter>Tools</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -105,14 +105,15 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>C:\Program Files\Autodesk\FBX\FBX SDK\2020.3.7\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>DirectXTex.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Add-Ons\DirectXTex-main\DirectXTex\Bin\Desktop_2022_Win10\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>DirectXTex.lib;libfbxsdk-md.lib;libxml2-md.lib;zlib-md.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Add-Ons\DirectXTex-main\DirectXTex\Bin\Desktop_2022_Win10\x64\Debug;C:\Program Files\Autodesk\FBX\FBX SDK\2020.3.7\lib\x64\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -137,6 +138,7 @@
     <ClInclude Include="HDL_ConstantBuffer.h" />
     <ClInclude Include="HDL_DepthStencilBuffer.h" />
     <ClInclude Include="HDL_DescriptorHeap.h" />
+    <ClInclude Include="HDL_FBXConverter.h" />
     <ClInclude Include="HDL_IndexBuffer.h" />
     <ClInclude Include="HDL_Input.h" />
     <ClInclude Include="HDL_PSO.h" />
@@ -153,6 +155,7 @@
     <ClCompile Include="HDL_ConstantBuffer.cpp" />
     <ClCompile Include="HDL_DepthStencilBuffer.cpp" />
     <ClCompile Include="HDL_DescriptorHeap.cpp" />
+    <ClCompile Include="HDL_FBXConverter.cpp" />
     <ClCompile Include="HDL_IndexBuffer.cpp" />
     <ClCompile Include="HDL_Input.cpp" />
     <ClCompile Include="HDL_PSO.cpp" />
