@@ -4,6 +4,9 @@
 #include <map>
 #include <string>
 
+/// <summary>
+/// FBXファイルをコンバートするクラス
+/// </summary>
 class HDL_FBXConverter
 {
 public:
@@ -47,11 +50,11 @@ private:
 	int NumParts;
 	struct Parts
 	{
-		std::vector<float> positions;
-		std::vector<float> normals;
-		std::vector<float> texcoords;
-		std::vector<uint16_t> indices;
-		std::string materialName;
+		std::vector<float>		positions;
+		std::vector<float>		normals;
+		std::vector<float>		texcoords;
+		std::vector<uint16_t>	indices;
+		std::string				materialName;
 	}*m_pParts;
 
 	void CreateTextCombineVertex(const char* textFile, float fx, float fy, float fz);
