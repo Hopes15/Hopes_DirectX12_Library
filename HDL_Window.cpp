@@ -28,35 +28,6 @@ HDL_Window::HDL_Window(const LONG WINDOW_WIDTH, const LONG WINDOW_HEIGHT, LPCWST
 	GenerateWindow(appName);
 }
 
-HDL_Window::HDL_Window(const LONG WINDOW_WIDTH, const LONG WINDOW_HEIGHT, LPCWSTR appName, LPCWSTR className, UINT icon_ID)
-{
-	//ウィンドウクラスの定義		
-	mWndClass.cbSize		= sizeof(WNDCLASSEX);
-	mWndClass.lpfnWndProc	= (WNDPROC)WindowProcedure;
-	mWndClass.lpszClassName = className;
-	mWndClass.hInstance		= GetModuleHandle(nullptr);
-
-	//アイコンのロード
-	auto hIcon = (HICON)LoadImage(
-		mWndClass.hInstance,
-		MAKEINTRESOURCE(icon_ID),
-		IMAGE_ICON,
-		GetSystemMetrics(SM_CXICON), 
-		GetSystemMetrics(SM_CYICON),
-		0
-	);
-
-	mWndClass.hIcon			= hIcon;
-
-	RegisterClassEx(&mWndClass);
-
-	//サイズ調整
-	mRect = { 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT };
-	AdjustWindowRect(&mRect, WS_OVERLAPPEDWINDOW, false);
-
-	GenerateWindow(appName);
-}
-
 void HDL_Window::GenerateWindow(LPCWSTR appName)
 {
 	//ウィンドウオブジェクトの生成

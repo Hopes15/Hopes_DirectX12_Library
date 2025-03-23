@@ -13,15 +13,6 @@ public:
 	HDL_Window(const LONG WINDOW_WIDTH = 1920, const LONG WINDOW_HEIGHT = 1080, LPCWSTR appName = L"No Name", LPCWSTR className = L"No Name");
 
 	/// <summary>
-	/// アプリケーションスタート、デフォルト解像度はFHD、アイコンあり
-	/// </summary>
-	/// <param name="WINDOW_WIDTH"> ウィンドウの幅			</param>
-	/// <param name="WINDOW_HEIGHT">ウィンドウの高さ		</param>
-	/// <param name="APP_NAME">		アプリケーションの名前	</param>
-	/// <param name="icon_ID">		アプリケーションのICON	</param>
-	HDL_Window(const LONG WINDOW_WIDTH = 1920, const LONG WINDOW_HEIGHT = 1080, LPCWSTR appName = L"No Name", LPCWSTR className = L"No Name", UINT icon_ID);
-
-	/// <summary>
 	/// OSからのメッセージを監視し、終了メッセージが来たらFalseを返す
 	/// </summary>
 	bool ObserveMSG();
