@@ -42,7 +42,9 @@ public:
 	/// <param name="metaData">		テクスチャのメタデータ		</param>
 	/// <param name="pImg">			イメージデータのポインタ	</param>
 	/// <param name="handle">		SRV用のハンドル				</param>
-	HDL_TextureBuffer(TexMetadata metaData, const Image& pImg, D3D12_CPU_DESCRIPTOR_HANDLE handle);
+	HDL_TextureBuffer(TexMetadata metaData, const Image& pImg);
+
+	void CreateSRV(D3D12_CPU_DESCRIPTOR_HANDLE handle);
 
 	/// <summary>
 	/// 画像データをVRAMへコピーする
@@ -68,6 +70,7 @@ private:
 	D3D12_SHADER_RESOURCE_VIEW_DESC mSRV = {};
 
 	class HDL_Renderer*	   pRenderer = nullptr;
+	ID3D12Device*		   pDev		 = nullptr;
 	ComPtr<ID3D12Resource> mSrcBuff	 = nullptr;
 	ComPtr<ID3D12Resource> mDstBuff	 = nullptr;
 };

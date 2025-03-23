@@ -2,10 +2,10 @@
 #include "HDL_Renderer.h"
 #include "Utilities.h"
 
-HDL_TextureBuffer::HDL_TextureBuffer(TexMetadata metaData, const Image& pImg, D3D12_CPU_DESCRIPTOR_HANDLE handle) :
+HDL_TextureBuffer::HDL_TextureBuffer(TexMetadata metaData, const Image& pImg) :
 	pRenderer(HDL_Renderer::GetInstance())
 {
-	auto dev = pRenderer->GetDevice();
+	pDev = pRenderer->GetDevice();
 
 	//バッファサイズをアライン
 	auto bufferSize = AlignBufferSize(pImg.rowPitch, D3D12_TEXTURE_DATA_PITCH_ALIGNMENT) * pImg.height;
@@ -13,7 +13,7 @@ HDL_TextureBuffer::HDL_TextureBuffer(TexMetadata metaData, const Image& pImg, D3
 	//コピー元リソースの生成
 	auto heapProp = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD);
 	auto resDesc  = CD3DX12_RESOURCE_DESC::Buffer(bufferSize);
-	auto result   = dev->CreateCommittedResource(
+	auto result   = pDev->CreateCommittedResource(
 		/*HEAP_PROPERTIES*/ &heapProp,
 		/*HEAP_FLAG		 */ D3D12_HEAP_FLAG_NONE,
 		/*RESOURCE_DESC  */ &resDesc,
@@ -39,7 +39,7 @@ HDL_TextureBuffer::HDL_TextureBuffer(TexMetadata metaData, const Image& pImg, D3
 		/*Texture Layout	*/ D3D12_TEXTURE_LAYOUT_UNKNOWN,
 		/*Resource Flags	*/ D3D12_RESOURCE_FLAG_NONE
 	);
-	result	 = dev->CreateCommittedResource(
+	result	 = pDev->CreateCommittedResource(
 		/*HEAP_PROPERTIES*/ &heapProp,
 		/*HEAP_FLAG		 */ D3D12_HEAP_FLAG_NONE,
 		/*RESOURCE_DESC  */ &resDesc,
@@ -56,12 +56,6 @@ HDL_TextureBuffer::HDL_TextureBuffer(TexMetadata metaData, const Image& pImg, D3
 	mSRV.ViewDimension			 = D3D12_SRV_DIMENSION_TEXTURE2D;
 	mSRV.Texture2D.MipLevels	 = 1;
 
-	dev->CreateShaderResourceView(
-		/*pResource */ mDstBuff.Get(),
-		/*pSRV	    */ &mSRV,
-		/*heaphandle*/ handle
-	);
-
 	//コピー元の設定
 	mSrc.pResource							= mSrcBuff.Get();
 	mSrc.Type								= D3D12_TEXTURE_COPY_TYPE_PLACED_FOOTPRINT;
@@ -76,6 +70,15 @@ HDL_TextureBuffer::HDL_TextureBuffer(TexMetadata metaData, const Image& pImg, D3
 	mDst.pResource		  = mDstBuff.Get();
 	mDst.Type			  = D3D12_TEXTURE_COPY_TYPE_SUBRESOURCE_INDEX;
 	mDst.SubresourceIndex = 0;
+}
+
+void HDL_TextureBuffer::CreateSRV(D3D12_CPU_DESCRIPTOR_HANDLE handle)
+{
+	pDev->CreateShaderResourceView(
+		/*pResource */ mDstBuff.Get(),
+		/*pSRV	    */ &mSRV,
+		/*heaphandle*/ handle
+	);
 }
 
 void HDL_TextureBuffer::CopyBufferToVRAM(const Image& pImg)

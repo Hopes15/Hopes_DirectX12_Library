@@ -1,7 +1,7 @@
 #include "HDL_ConstantBuffer.h"
 #include "HDL_Renderer.h"
 
-HDL_ConstantBuffer::HDL_ConstantBuffer(UINT64 bufferSize, D3D12_CPU_DESCRIPTOR_HANDLE handle)
+HDL_ConstantBuffer::HDL_ConstantBuffer(UINT64 bufferSize)
 	: pDevice(HDL_Renderer::GetInstance()->GetDevice())
 {
 	//リソース生成
@@ -21,7 +21,10 @@ HDL_ConstantBuffer::HDL_ConstantBuffer(UINT64 bufferSize, D3D12_CPU_DESCRIPTOR_H
 	//コンスタントバッファービューの設定
 	mCBV.BufferLocation = mConstantBuff->GetGPUVirtualAddress();
 	mCBV.SizeInBytes	= static_cast<UINT>(bufferSize); //全バイト
+}
 
+void HDL_ConstantBuffer::CreateCBV(D3D12_CPU_DESCRIPTOR_HANDLE handle)
+{
 	//コンスタントバッファービューを作成
 	pDevice->CreateConstantBufferView(&mCBV, handle);
 }

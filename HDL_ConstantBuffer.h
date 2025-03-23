@@ -8,8 +8,13 @@ public:
 	/// HDL_ConstantBufferクラスを初期化
 	/// </summary>
 	/// <param name="bufferSize">	ConstantBufferのサイズ					</param>
-	/// <param name="handle">		DescriptorHeapのハンドル（ポインタ）	</param>
-	HDL_ConstantBuffer(UINT64 bufferSize, D3D12_CPU_DESCRIPTOR_HANDLE handle);
+	HDL_ConstantBuffer(UINT64 bufferSize);
+
+	/// <summary>
+	/// CBVを生成
+	/// </summary>
+	/// <param name="handle">	DescriptorHeapのヒープハンドル				</param>
+	void CreateCBV(D3D12_CPU_DESCRIPTOR_HANDLE handle);
 
 	/// <summary>
 	/// ConstantBufferをVRAMへコピーする
