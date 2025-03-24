@@ -44,12 +44,12 @@ public:
 	/// <summary>
 	/// CPU上のHeapHandle開始情報を取得
 	/// </summary>
-	D3D12_CPU_DESCRIPTOR_HANDLE GetHeapStart_In_CPU() { return mHeapHandle_CPU; }
+	D3D12_CPU_DESCRIPTOR_HANDLE GetHeapStart_In_CPU() const { return mHeapHandle_CPU; }
 
 	/// <summary>
 	/// GPU上のHeapHandle開始情報を取得
 	/// </summary>
-	D3D12_GPU_DESCRIPTOR_HANDLE GetHeapStart_In_GPU() { return mHeapHandle_GPU; }
+	D3D12_GPU_DESCRIPTOR_HANDLE GetHeapStart_In_GPU() const { return mHeapHandle_GPU; }
 
 private:
 	ID3D12Device*				 pDevice   = nullptr;
